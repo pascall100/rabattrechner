@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Der Autohändler</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Rabattrechner</h2>
+        <h4>Bitte geben Sie statt des Kommas einen Punkt ein.</h4>
+        <form id="rabattForm">
+            <label for="autopreis">Auto Preis (in Euro):</label>
+            <input type="number" id="autopreis" step="0.01" required>
+
+            <label for="rabatt">Rabatt in Prozent:</label>
+            <input type="number" id="rabatt" step="0.01" required>
+
+            <button type="button" onclick="berechneRabatt()">Berechnen</button>
+            <button type="button" onclick="resetForm()">Löschen</button>
+
+            <p>Endpreis: <span id="endpreis">0</span> Euro</p>
+        </form>
+    </div>
+
+    <script>
+        function berechneRabatt() {
+            let autopreis = parseFloat(document.getElementById("autopreis").value);
+            let rabatt = parseFloat(document.getElementById("rabatt").value);
+
+            let rabattBetrag = (rabatt / 100) * autopreis;
+            let endpreis = autopreis - rabattBetrag;
+
+            document.getElementById("endpreis").textContent = endpreis.toFixed(2) + " Euro";
+        }
+
+        function resetForm() {
+            document.getElementById("autopreis").value = "";
+            document.getElementById("rabatt").value = "";
+            document.getElementById("endpreis").textContent = "0 Euro";
+        }
+    </script>
+</body>
+</html>
